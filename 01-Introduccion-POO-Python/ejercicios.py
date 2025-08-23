@@ -108,33 +108,33 @@ print("\nEJERCICIO 3: CLASE CUENTA BANCARIA MEJORADA")
 print("-" * 40)
 
 class CuentaBancaria:
-    def __init__(self, titular, saldo_inicial, tipo_cuenta="ahorros"):
-        self.titular = titular
-        self.__saldo = saldo_inicial
-        self.tipo_cuenta = tipo_cuenta
+    def __init__(self, titular: str, saldo_inicial: float, tipo_cuenta: str = "ahorros"):
+        self.titular = str(titular)
+        self.__saldo = float(saldo_inicial)
+        self.tipo_cuenta = str(tipo_cuenta)
         self.activa = True
-    
-    def depositar(self, cantidad):
+
+    def depositar(self , cantidad: float) -> str:
         if not self.activa:
             return "La cuenta está inactiva"
         
         if cantidad > 0:
-            self.__saldo += cantidad
+            self.__saldo += float(cantidad)
             return f"Depósito exitoso de ${cantidad:,.2f}. Nuevo saldo: ${self.__saldo:,.2f}"
         else:
             return "La cantidad debe ser mayor a 0"
     
-    def retirar(self, cantidad):
+    def retirar(self, cantidad: float) -> str:
         if not self.activa:
             return "La cuenta está inactiva"
         
         if cantidad > 0 and cantidad <= self.__saldo:
-            self.__saldo -= cantidad
+            self.__saldo -= float(cantidad)
             return f"Retiro exitoso de ${cantidad:,.2f}. Saldo restante: ${self.__saldo:,.2f}"
         else:
             return "Fondos insuficientes o cantidad inválida"
     
-    def consultar_saldo(self):
+    def consultar_saldo(self) -> str:
         if self.activa:
             return f"Saldo actual: ${self.__saldo:,.2f}"
         else:
